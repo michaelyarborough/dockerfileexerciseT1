@@ -59,7 +59,7 @@ pipeline {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
                 docker push michaelyarborough/flask-app
-                docker push michaelyarborough/nginx
+                docker push michaelyarborough/mynginx
                 '''
             }
 

@@ -24,9 +24,9 @@ pipeline {
 
             steps {
 
-                sh 'docker build -t michaelyarborough/flask-app -jenk:v${BUILD_NUMBER} .'
+                sh 'docker build -t michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} .'
 
-                sh 'docker build -t michaelyarborough/mynginx -jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .'
+                sh 'docker build -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .'
 
             }
 
@@ -58,10 +58,10 @@ pipeline {
             steps {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
-                docker push michaelyarborough/flask-app -jenk:latest || true
-                docker push michaelyarborough/flask-app -jenk:v${BUILD_NUMBER} || true
-                docker push michaelyarborough/mynginx -jenk:latest || true
-                docker push michaelyarborough/mynginx -jenk:v${BUILD_NUMBER} || true
+                docker push michaelyarborough/flask-app-jenk:latest || true
+                docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} || true
+                docker push michaelyarborough/mynginx-jenk:latest || true
+                docker push michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} || true
                 '''
             }
 

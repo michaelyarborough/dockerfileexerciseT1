@@ -1,6 +1,7 @@
 pipeline {
 
     agent any
+   
 
     stages {
 
@@ -48,7 +49,17 @@ pipeline {
             }
 
         }
+        environment (DOCKERHUB=credentials('DOCKERHUB'))
+        stage('DockerPush') {
 
+            steps {
+                sh '''
+                'Docker push michaelyarborough/flask-app'
+                'Docker push michaelyarborough/nginx'
+                '''
+            }
+
+        }
     }
 
 }

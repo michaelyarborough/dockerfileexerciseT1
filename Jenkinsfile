@@ -54,8 +54,9 @@ pipeline {
 
             steps {
                 sh '''
-                'Docker push michaelyarborough/flask-app'
-                'Docker push michaelyarborough/nginx'
+                echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
+                docker push michaelyarborough/flask-app
+                docker push michaelyarborough/nginx
                 '''
             }
 

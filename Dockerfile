@@ -27,9 +27,3 @@ EXPOSE 5500
 # Create an entrypoint
 
 ENTRYPOINT ["python","app.py"]
-
-Use “touch” to create a file called Dockerfile.nginx and add the following:
-
-FROM nginx:latest
-
-COPY nginx.conf /etc/nginx/nginx.conf

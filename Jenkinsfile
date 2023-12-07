@@ -1,7 +1,7 @@
 pipeline {
 
     agent any
-   
+   environment (DOCKERHUB=credentials('DOCKERHUB'))
 
     stages {
 
@@ -49,7 +49,7 @@ pipeline {
             }
 
         }
-        environment (DOCKERHUB=credentials('DOCKERHUB'))
+        
         stage('DockerPush') {
 
             steps {

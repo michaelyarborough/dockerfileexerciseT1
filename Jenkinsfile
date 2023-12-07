@@ -50,7 +50,7 @@ pipeline {
             steps { sh '''
                     ssh -i ~/.ssh/id_rsa jenkins@10.154.0.26 << EOF
                     docker run -d --name flask-app --network new-network michaelyarborough/flask-app-jenk
-                    docker run -d -p 80:80 --name mynginx --network new-network michaelyarborough/mynginx-jenk
+                    docker start mynginx || docker run -d -p 80:80 --name mynginx --network new-network michaelyarborough/mynginx-jenk
                 '''
             }
 

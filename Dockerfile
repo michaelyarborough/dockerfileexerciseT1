@@ -18,7 +18,7 @@ COPY . .
 
 # Set YOUR_NAME environment variable
 
-ENV YOUR_NAME "Michael Yarborough"
+ENV YOUR_NAME="Michael Yarborough"
 
 # Expose the correct port
 

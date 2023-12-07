@@ -21,12 +21,11 @@ pipeline {
 
         stage('Build') {
 
-            steps {
+            steps {sh '''
 
-                sh 'docker build -t michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} .'
-
-                sh 'docker build -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .'
-
+                docker build -t michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} .
+                docker build -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .
+                '''
             }
 
         }
@@ -35,8 +34,8 @@ pipeline {
 
             steps { sh '''
                     ssh -i ~/.ssh/id_rsa jenkins@10.154.0.26 << EOF
-                    docker run -d --name flask-app --network new-network flask-app:latest
-                    docker run -d -p 80:80 --name mynginx --network new-network mynginx:latest
+                    docker run -d --name flask-app --network new-network michaelyarborough/flask-app-jenk
+                    docker run -d -p 80:80 --name mynginx --network new-network michaelyarborough/mynginx-jenk
                 '''
             }
 

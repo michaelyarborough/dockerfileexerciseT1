@@ -29,7 +29,19 @@ pipeline {
             }
 
         }
+        stage('DockerPush') {
 
+            steps {
+                sh '''
+                echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
+                docker push michaelyarborough/flask-app-jenk:latest 
+                docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER}
+                docker push michaelyarborough/mynginx-jenk:latest 
+                docker push michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} 
+                '''
+            }
+
+        }
         stage('Deploy') {
 
             steps { sh '''
@@ -49,20 +61,7 @@ pipeline {
             }
 
         }
-        
-        stage('DockerPush') {
-
-            steps {
-                sh '''
-                echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
-                docker push michaelyarborough/flask-app-jenk:latest 
-                docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER}
-                docker push michaelyarborough/mynginx-jenk:latest || true
-                docker push michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} || true
-                '''
-            }
-
-        }
+      
     }
 
 }

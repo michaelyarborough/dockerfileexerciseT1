@@ -58,7 +58,9 @@ pipeline {
             steps {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
+                docker tag flask-app michaelyarborough/flask-app || true
                 docker push michaelyarborough/flask-app || true
+                docker tag mynginx michaelyarborough/mynginx || true
                 docker push michaelyarborough/mynginx || true
                 '''
             }

@@ -58,8 +58,10 @@ pipeline {
             steps {
                 sh '''
                 echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
-                docker push michaelyarborough/flask-app || true
-                docker push michaelyarborough/mynginx || true
+                docker push michaelyarborough/flask-app-jenk:latest || true
+                docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} || true
+                docker push michaelyarborough/mynginx-jenk:latest || true
+                docker push michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} || true
                 '''
             }
 

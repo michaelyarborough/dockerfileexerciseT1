@@ -17,7 +17,8 @@ pipeline {
                 docker stop mynginx || echo "mynginx Not Running"
                 docker rm flask-app || echo "flask-app Not Running"
                 docker rm mynginx || echo "mynginx Not Running"
-                
+                docker rmi michaelyarborough/flask-app-jenk
+                docker rmi michaelyarborough/mynginx-jenk
                 '''
             }
 

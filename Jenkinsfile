@@ -12,11 +12,12 @@ pipeline {
 
             steps { sh '''
                 ssh -i ~/.ssh/id_rsa jenkins@10.154.0.26 << EOF
+                docker network create new-network || echo "Network Already Exists"
                 docker stop flask-app || echo "flask-app Not Running"
-                docker stop nginx || echo "nginx Not Running"
+                docker stop mynginx || echo "mynginx Not Running"
                 docker rm flask-app || echo "flask-app Not Running"
-                docker rm nginx || echo "nginx Not Running"
-                docker network create new-network || true
+                docker rm mynginx || echo "mynginx Not Running"
+                
                 '''
             }
 
@@ -27,7 +28,7 @@ pipeline {
             steps {sh '''
 
                 docker build -t michaelyarborough/flask-app-jenk:latest -t michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} .
-                docker build -t michaelyarborough/mynginx-jenk:latest -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .
+                docker build -t michaelyarborough/mynginx-jenk:latest -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx 
                 '''
             }
 
@@ -49,8 +50,8 @@ pipeline {
 
             steps { sh '''
                     ssh -i ~/.ssh/id_rsa jenkins@10.154.0.26 << EOF
-                    docker run -d --name flask-app-jenk --network new-network michaelyarborough/flask-app-jenk
-                    docker start mynginx || docker run -d -p 80:80 --name mynginx --network new-network michaelyarborough/mynginx-jenk
+                    docker run -d --name flask-app --network new-network michaelyarborough/flask-app-jenk
+                    docker run -d -p 80:80 --name mynginx --network new-network michaelyarborough/mynginx-jenk
                 '''
             }
 

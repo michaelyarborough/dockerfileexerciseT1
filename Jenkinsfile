@@ -28,7 +28,7 @@ pipeline {
             steps {sh '''
 
                 docker build -t michaelyarborough/flask-app-jenk:latest -t michaelyarborough/flask-app-jenk:v${BUILD_NUMBER} .
-                docker build -t michaelyarborough/mynginx-jenk:latest -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx 
+                docker build -t michaelyarborough/mynginx-jenk:latest -t michaelyarborough/mynginx-jenk:v${BUILD_NUMBER} -f Dockerfile.nginx .
                 '''
             }
 

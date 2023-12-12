@@ -25,7 +25,7 @@ spec:
   - name: nginx-volume
     configMap: 
       name: nginx-config 
-  containerPort: 5500
+  containers:
     name: nginx
     image: nginx:latest
     ports:

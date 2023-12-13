@@ -12,7 +12,7 @@ data:
           proxy_pass http://flask-app:5500;
         }
       }
-    }  
+    } 
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -23,16 +23,16 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchlabels:
-      app: nginx
-  template:
+    matchLabels:
+      app: nginx       
+ template:
     metadata:
       labels:
-        app: nginx
+        app: nginx      
     spec:
       containers:
-    - name: nginx
-      image: nginx:latest
+      - name: nginx
+        image: nginx:latest
   volumes:
   - name: nginx-volume
     configMap:
@@ -51,10 +51,10 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: LoadBalancer
+  type: LoadBalancer 
   selector:
     app: nginx
   ports:
   - protocol: TCP
-    port: 80 
+    port: 80
     targetPort: 80

@@ -23,6 +23,7 @@ metadata:
 spec:
   replicas: 3
   selector:
+  matchlabels:
     app: nginx
   volumes:
   - name: nginx-volume

@@ -25,10 +25,11 @@ spec:
   selector:
   matchlabels:
     app: nginx
-  volumes:
-  - name: nginx-volume
-    configMap: 
-      name: nginx-config 
+  template:
+    metadata:
+      labels:
+        app: nginx
+ spec:
   containers:
   - name: nginx
     image: nginx:latest

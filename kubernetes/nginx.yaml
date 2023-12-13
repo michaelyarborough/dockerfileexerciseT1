@@ -25,10 +25,10 @@ spec:
   selector:
     matchLabels:
       app: nginx  
-strategy:
-  rollingUpdate:
-    maxSurge: 10%
-    maxUnavailable: 25%
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 25%
   template:
     metadata:
       labels:

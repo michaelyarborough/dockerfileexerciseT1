@@ -15,12 +15,15 @@ data:
     }  
 ---
 apiVersion: v1
-kind: Pod
+kind: Replicaset
 metadata:
   name: nginx
   labels:
     app: nginx
 spec:
+  replicas: 3
+  selector:
+    app: nginx
   volumes:
   - name: nginx-volume
     configMap: 

@@ -23,16 +23,16 @@ metadata:
 spec:
   replicas: 3
   selector:
-  matchlabels:
-    app: nginx
+    matchlabels:
+      app: nginx
   template:
     metadata:
       labels:
         app: nginx
-  spec:
-    containers:
+    spec:
+      containers:
     - name: nginx
-    image: nginx:latest
+      image: nginx:latest
     ports:
     - containerPort: 80
     volumeMounts:

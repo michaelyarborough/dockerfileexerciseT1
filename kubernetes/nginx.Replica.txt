@@ -15,20 +15,16 @@ data:
     } 
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
   name: nginx
   labels:
     app: nginx
 spec:
-  replicas: 10
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx  
-strategy:
-  rollingUpdate:
-    maxSurge: 10%
-    maxUnavailable: 25%
+      app: nginx       
   template:
     metadata:
       labels:

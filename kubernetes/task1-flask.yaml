@@ -33,8 +33,7 @@ spec:
     spec:
        containers:
        - name: flask-app
-         image: michaelyarborough/task1kubeblue:latest
-         ports: 
+         image: michaelyarborough/task1kubeblue
          - containerPort: 5500
 
 

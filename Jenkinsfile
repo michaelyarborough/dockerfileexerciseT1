@@ -11,7 +11,7 @@ pipeline {
                         sh '''
                         kubectl create namespace prod || echo "Namespace prod already exists"
                         '''
-                    } else if (env.GIT_BRANCH == "origin/main"){
+                    } else if (env.GIT_BRANCH == "origin/dev"){
                         sh '''
                         kubectl create namespace dev || echo "Namespace dev already exists"
                         '''
@@ -33,7 +33,7 @@ pipeline {
                         sh '''
                         docker build -t michaelyarborough/flask-app:latest -t michaelyarborough/flask-app:prod-v${BUILD_NUMBER} .
                         '''
-                    } else if (env.GIT_BRANCH == "origin/main"){
+                    } else if (env.GIT_BRANCH == "origin/dev"){
                         sh '''
                         docker build -t michaelyarborough/flask-app:latest -t michaelyarborough/flask-app:dev-v${BUILD_NUMBER} .
                         '''
@@ -58,7 +58,7 @@ pipeline {
                 docker push michaelyarborough/flask-app:latest 
                 docker push michaelyarborough/flask-app:prod-v${BUILD_NUMBER}
                 '''
-                    } else if (env.GIT_BRANCH == "origin/main")
+                    } else if (env.GIT_BRANCH == "origin/dev")
                     sh '''
                      docker push michaelyarborough/flask-app:latest 
                      docker push michaelyarborough/flask-app:dev-v${BUILD_NUMBER}
@@ -77,7 +77,7 @@ pipeline {
                     kubectl apply -n prod -f ./kubernetes
                     kubectl set image deployment/flask-deployment flask-app=michaelyarborough/flask-duo:prod-v${BUILD_NUMBER} -n prod
                     '''
-                    } else if (env.GIT_BRANCH == "origin/main")
+                    } else if (env.GIT_BRANCH == "origin/dev")
                     sh '''
                     kubectl apply -n dev -f ./kubernetes
                     kubectl set image deployment/flask-deployment flask-app=michaelyarborough/flask-duo:dev-v${BUILD_NUMBER} -n dev

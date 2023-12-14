@@ -33,7 +33,7 @@ spec:
     spec:
        containers:
        - name: flask-app
-         image: michaelyarborough/task1
+         image: michaelyarborough/task1kube
          imagePullPolicy: Always
          ports: 
          - containerPort: 5500

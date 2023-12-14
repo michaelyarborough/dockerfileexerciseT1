@@ -18,8 +18,8 @@ pipeline {
 
             steps {
                 sh '''
-                docker push michaelyarborough/flask-app-jenk:latest 
-                docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER}
+                docker push michaelyarborough/flask-app:latest 
+                docker push michaelyarborough/flask-app:v${BUILD_NUMBER}
                 '''
             }
 

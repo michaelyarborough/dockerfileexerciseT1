@@ -58,7 +58,7 @@ pipeline {
                 docker push michaelyarborough/flask-app:latest 
                 docker push michaelyarborough/flask-app:prod-v${BUILD_NUMBER}
                 '''
-                    } elese if (env.GIT_BRANCH == "origin/main")
+                    } else if (env.GIT_BRANCH == "origin/main")
                     sh '''
                      docker push michaelyarborough/flask-app:latest 
                      docker push michaelyarborough/flask-app:dev-v${BUILD_NUMBER}

@@ -34,5 +34,6 @@ spec:
        containers:
        - name: flask-app
          image: michaelyarborough/task1
+         imagePullPolicy: Always
          ports: 
          - containerPort: 5500

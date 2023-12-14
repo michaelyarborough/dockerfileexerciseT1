@@ -1,10 +1,7 @@
 pipeline {
 
     agent any
- environment {
-       DOCKERHUB=credentials('DOCKERHUB')
-    }
-    
+  
 
     stages {
 
@@ -21,7 +18,6 @@ pipeline {
 
             steps {
                 sh '''
-                echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin
                 docker push michaelyarborough/flask-app-jenk:latest 
                 docker push michaelyarborough/flask-app-jenk:v${BUILD_NUMBER}
                 '''
